@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--  Office Account form -->
+        <record model="ir.ui.view" id="wechat_message_form_view">
+            <field name="name">wechat.message.form</field>
+            <field name="model">wechat.message</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Office Account">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="official_account_id"/>
+                                <field name="ToUserName"/>
+                                <field name="CreateTime"/>
+                            </group>
+                            <group>
+                                <field name="MsgType"/>
+                                <field name="FromUserName"/>
+                                <field name="MsgId"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="文本" attrs="{'invisible':[('MsgType','!=','text')]}">
+                                <group>
+                                    <group>
+                                        <field name="Content"/>
+                                    </group>
+                                    <group></group>
+                                </group>
+
+                            </page>
+                            <page string="图片" attrs="{'invisible':[('MsgType','!=','image')]}">
+                                <group>
+                                    <group>
+                                        <field name="PicUrl"/>
+                                    </group>
+                                    <group>
+                                        <field name="PicMediaId"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="语音" attrs="{'invisible':[('MsgType','!=','voice')]}">
+                                <group>
+                                    <group>
+                                        <field name="Format"/>
+                                    </group>
+                                    <group>
+                                        <field name="VoiceMediaId"/>
+                                    </group>
+                                </group>
+                                <group string="语音识别内容">
+                                    <field name="Recognition" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="视屏" attrs="{'invisible':[('MsgType','!=','video')]}">
+                                <group>
+                                    <group>
+                                        <field name="VideoMediaId"/>
+                                    </group>
+                                    <group>
+                                        <field name="ThumbMediaId"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="小视屏" attrs="{'invisible':[('MsgType','!=','shortvideo')]}">
+                                <group>
+                                    <group>
+                                        <field name="ShortVideoMediaId"/>
+                                    </group>
+                                    <group>
+                                        <field name="ShortVideoThumbMediaId"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="地理位置" attrs="{'invisible':[('MsgType','!=','location')]}">
+                                <group>
+                                    <group>
+                                        <field name="Location_X"/>
+                                        <field name="Scale"/>
+                                    </group>
+                                    <group>
+                                        <field name="Location_Y"/>
+                                        <field name="Label"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="链接" attrs="{'invisible':[('MsgType','!=','link')]}">
+                                <group>
+                                    <group>
+                                        <field name="Title"/>
+                                    </group>
+                                    <group>
+                                        <field name="Url"/>
+                                    </group>
+                                </group>
+                                <group string="消息描述">
+                                    <field name="Description" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="事件" attrs="{'invisible':[('MsgType','!=','event')]}">
+                                <group>
+                                    <group>
+                                        <field name="Event"/>
+                                        <field name="Ticket"/>
+                                        <field name="Longitude"/>
+                                    </group>
+                                    <group>
+                                        <field name="EventKey"/>
+                                        <field name="Precision"/>
+                                        <field name="Latitude"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Office Account tree -->
+        <record model="ir.ui.view" id="wechat_message_tree_view">
+            <field name="name">wechat.message.tree</field>
+            <field name="model">wechat.message</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Office Account">
+                    <field name="official_account_id"/>
+                    <field name="ToUserName"/>
+                    <field name="FromUserName"/>
+                    <field name="CreateTime"/>
+                    <field name="MsgType"/>
+                    <field name="MsgId"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_wechat_message">
+            <field name="name">Office Account</field>
+            <field name="res_model">wechat.message</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="wechat_message_search_view"/>-->
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wechat_message_tree">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wechat_message_tree_view"/>
+            <field name="act_window_id" ref="action_wechat_message"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wechat_message_form">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wechat_message_form_view"/>
+            <field name="act_window_id" ref="action_wechat_message"/>
+        </record>
+    </data>
+</openerp>

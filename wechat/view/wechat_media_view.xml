@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--  Mediaform -->
+        <record model="ir.ui.view" id="wechat_media_form_view">
+            <field name="name">wechat.media.form</field>
+            <field name="model">wechat.media</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Media">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="official_account_id" options="{'no_open':true}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="media_file"/>
+                                <field name="video_title"/>
+                            </group>
+                            <group>
+                                <field name="media_type"/>
+                            </group>
+                        </group>
+                        <group string="VideoIntroduction">
+                            <field name="video_introduction" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  tree -->
+        <record model="ir.ui.view" id="wechat_media_tree_view">
+            <field name="name">wechat.media.tree</field>
+            <field name="model">wechat.media</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Media">
+                    <field name="official_account_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Group search -->
+        <record model="ir.ui.view" id="wechat_media_search_view">
+            <field name="name">wechat.media.search</field>
+            <field name="model">wechat.media</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="official_account_id"/>
+                    <group>
+                        <filter string="Official Account" name="filter_office_account"
+                                context="{'group_by':'official_account_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_wechat_media">
+            <field name="name">Media</field>
+            <field name="res_model">wechat.media</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="wechat_media_search_view"/>-->
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_filter_office_account': 1}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wechat_media_tree">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wechat_media_tree_view"/>
+            <field name="act_window_id" ref="action_wechat_media"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wechat_media_form">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wechat_media_form_view"/>
+            <field name="act_window_id" ref="action_wechat_media"/>
+        </record>
+
+        <!--  news media form -->
+        <record model="ir.ui.view" id="wechat_news_form_view">
+            <field name="name">wechat.news.form</field>
+            <field name="model">wechat.news</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="News">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="official_account_id" options="{'no_open':true}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="title"/>
+                                <field name="thumb_media_id"/>
+                                <field name="show_cover_pic"/>
+                                <field name="media_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="author"/>
+                                <field name="digest"/>
+                                <field name="content_source_url"/>
+                            </group>
+                        </group>
+                        <group string="Content">
+                            <field name="content" nolabel="1"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  tree -->
+        <record model="ir.ui.view" id="wechat_news_tree_view">
+            <field name="name">wechat.news.tree</field>
+            <field name="model">wechat.news</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="News">
+                    <field name="official_account_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Group search -->
+        <record model="ir.ui.view" id="wechat_news_search_view">
+            <field name="name">wechat.news.search</field>
+            <field name="model">wechat.news</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="official_account_id"/>
+                    <group>
+                        <filter string="Official Account" name="filter_office_account"
+                                context="{'group_by':'official_account_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_wechat_news">
+            <field name="name">News</field>
+            <field name="res_model">wechat.news</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="wechat_news_search_view"/>-->
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_filter_office_account': 1}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wechat_news_tree">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wechat_news_tree_view"/>
+            <field name="act_window_id" ref="action_wechat_news"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wechat_news_form">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wechat_news_form_view"/>
+            <field name="act_window_id" ref="action_wechat_news"/>
+        </record>
+
+
+    </data>
+</openerp>

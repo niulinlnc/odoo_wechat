@@ -1,0 +1,6 @@
+import wechat_message
+import wechat_official_account
+import wechat_menu
+import wechat_media
+import wechat_reply
+import wechat_user

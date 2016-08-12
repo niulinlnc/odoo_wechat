@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- wechat -->
+        <menuitem name="wechat" id="wechat_menu_parent" sequence="12"/>
+        <menuitem name="公众号" id="wechat_official_account" parent="wechat_menu_parent" sequence="12"
+                  action="action_wechat_official_account"/>
+        <menuitem name="菜单" id="wechat_custom_menu" parent="wechat_menu_parent" sequence="12"
+                  action="action_wechat_custom_menu"/>
+
+        <menuitem name="媒体" id="wechat_media_parent" parent="wechat_menu_parent" sequence="12"/>
+        <menuitem name="图文" id="wechat_media_news" parent="wechat_media_parent" sequence="12"
+                  action="action_wechat_news"/>
+        <menuitem name="其他" id="wechat_media_image" parent="wechat_media_parent" sequence="12"
+                  action="action_wechat_media"/>
+
+        <menuitem name="用户" id="wechat_user" parent="wechat_menu_parent" sequence="12"
+                  action="action_wechat_user"/>
+        <menuitem name="用户组" id="wechat_user_group" parent="wechat_menu_parent" sequence="12"
+                  action="action_wechat_user_group"/>
+        <menuitem name="消息" id="wechat_message" parent="wechat_menu_parent" sequence="12"
+                  action="action_wechat_message"/>
+        <menuitem name="消息回复" id="wechat_reply" parent="wechat_menu_parent" sequence="12"
+                  action="action_wechat_reply"/>
+    </data>
+</openerp>
