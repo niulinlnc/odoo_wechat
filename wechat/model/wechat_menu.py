@@ -163,3 +163,26 @@ class Menu(osv.Model):
         result = res.json()
         print result
         return result
+
+
+class DIYMenu(osv.Model):
+    """
+    个性化菜单管理
+    """
+    _name = 'wechat.diy.menu'
+    _description = 'wechat custom-defined menu'
+
+    name = fields.Char('name', help=u'菜单名称', required=True)
+    menu_type = fields.Selection([('click', 'click'), ('view', 'view'), ('scancode_push', 'scancode_push'),
+                                  ('scancode_waitmsg', 'scancode_waitmsg'), ('pic_sysphoto', 'pic_sysphoto'),
+                                  ('pic_photo_or_album', 'pic_photo_or_album'), ('pic_weixin', 'pic_weixin'),
+                                  ('location_select', 'location_select'), ('media_id', 'media_id'),
+                                  ('view_limited', 'view_limited')], u'menu type', default='click', help=u'菜单类型')
+    key = fields.Char('key', help=u'按钮为click类型时,需提供key')
+    url = fields.Char('url', help=u'按钮类型为view时,需提供url')
+    media_id = fields.Char('media id', help=u'按钮类型为["view_limited","media_id"]时,需提供media_id')
+    official_account_id = fields.Many2one('wechat.official.account', u'office account', required=True, help=u'公众账号')
+    parent_id = fields.Many2one('wechat.custom.menu', 'parent menu', help=u'上一级菜单')
+    sub_button_ids = fields.One2many('wechat.custom.menu', 'parent_id', 'sub buttons', help=u'下一级菜单')
+
+    is_root_menu = fields.Boolean(u'is root menu', default=False)
